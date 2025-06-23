@@ -48,7 +48,13 @@ git clone https://github.com/yourusername/elt-flight-booking.git
 cd elt-flight-booking
 ```
 
-### 2. Generate Fernet Key
+### 2. Copy the Data Source
+```
+- You need to copy the Data Souce from this link https://drive.google.com/file/d/1Zu5grD6mKuCcLagggE9R8ILjzvPIbXDQ/view?usp=sharing
+- You'll need to store it as aircraft_db/init.sql
+```
+
+### 3. Generate Fernet Key
 This key encrypts credentials in Airflow connections.
 ```
 pip install cryptography==45.0.2
@@ -56,7 +62,7 @@ python3 fernet.py
 ```
 Copy the output and place it on `.env` file
 
-### 3. Create `.env` file
+### 4. Create `.env` file
 
 ```
 # Fernet key for encrypting Airflow connections (generate using fernet.py script)
@@ -85,12 +91,12 @@ MINIO_ROOT_USER=...
 MINIO_ROOT_PASSWORD=...
 ```
 
-### 4. Build and Start Service
+### 5. Build and Start Service
 ```
 docker-compose up --build -d
 ```
 
-### 5. Create Airflow User
+### 6. Create Airflow User
 ```
 docker exec -it airflow_standalones airflow users create \
     --username your_username \
@@ -101,7 +107,7 @@ docker exec -it airflow_standalones airflow users create \
     --password your_password
 ```
 
-### 6. Open Airflow UI
+### 7. Open Airflow UI
 Access the UI at: http://localhost:8080 (or another defined port).
 
 ## Setup Airflow Connections
